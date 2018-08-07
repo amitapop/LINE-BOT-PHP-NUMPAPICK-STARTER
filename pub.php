@@ -1,13 +1,13 @@
  <?php
  function pubMqtt($topic,$msg){
-       $APPID= "amilinebot/"; //enter your appid
-     $KEY = "mVtpfJBGqpAgrQO"; //enter your key
-    $SECRET = "ApVKzW2y2kbr6fYGA4XSPtOYA"; //enter your secret
+       $APPID= "amilinebot/";              //name application
+     $KEY = "mVtpfJBGqpAgrQO";             //device key
+    $SECRET = "ApVKzW2y2kbr6fYGA4XSPtOYA"; //device secret
     $Topic = "$topic"; 
       put("https://api.netpie.io/microgear/".$APPID.$Topic."?retain&auth=".$KEY.":".$SECRET,$msg);
  
   }
- function getMqttfromlineMsg($Topic,$lineMsg){
+ function getMqttfromlineMsg($Topic,$lineMsg){   
  
     $pos = strpos($lineMsg, ":");
     if($pos){
@@ -27,7 +27,7 @@
       
     $ch = curl_init($url);
  
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);    //return ค่ากลับมาในรูป string
      
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
      
@@ -35,13 +35,13 @@
      
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
      
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $tmsg);      //ข้อมูลที่จะส่งไป
  
     //curl_setopt($ch, CURLOPT_USERPWD, "mJ7K4MfteC7p0dW:pp4gzMhCvJIqlxc66hKEvk46m");
      
-    $response = curl_exec($ch);
+    $response = curl_exec($ch);                       //สั่งให้ curl ทำงานคล้ายๆการกดปุ่ม submit ใน form ที่ client
     
-      curl_close($ch);
+      curl_close($ch);                                //ปิดการทำงาน
       echo $response . "\r\n";
     return $response;
 }
